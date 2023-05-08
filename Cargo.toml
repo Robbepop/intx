@@ -2,7 +2,8 @@
 name = "unaligned-ints"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+documentation = "https://docs.rs/unaligned-int/"
+description = "Unaligned integers with non-power-of-two bit widths."
 
 [dependencies]
+# none

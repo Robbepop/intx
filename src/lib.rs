@@ -22,7 +22,7 @@
 //! ```
 //!
 //! ```
-//! # use unaligned_ints::{U16, I16, U32, I32, U64, I64};
+//! # use unaligned_int::{U16, I16, U32, I32, U64, I64};
 //! pub enum Unaligned {
 //!     A(U64),
 //!     B(I64),
@@ -31,6 +31,8 @@
 //! // Note that the size of `Op` is 4 bytes since `U24` has an alignemnt of 1.
 //! assert_eq!(core::mem::size_of::<Unaligned>(), 9);
 //! ```
+
+#![no_std]
 
 mod error;
 mod from;
