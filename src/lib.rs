@@ -41,6 +41,7 @@ mod standard;
 mod try_from;
 mod unsigned;
 mod utils;
+mod within_bounds;
 
 #[cfg(test)]
 mod tests;
@@ -49,6 +50,7 @@ pub use self::error::TryFromIntError;
 pub use self::signed::{I104, I112, I120, I24, I40, I48, I56, I72, I80, I88, I96};
 pub use self::standard::{I128, I16, I32, I64, U128, U16, U32, U64};
 pub use self::unsigned::{U104, U112, U120, U24, U40, U48, U56, U72, U80, U88, U96};
+pub(crate) use self::within_bounds::IsWithinBoundsOf;
 
 /// Trait implemented by Rust integer primitives to communicate their bounds.
 trait BoundedInteger: Sized {

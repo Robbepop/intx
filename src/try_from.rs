@@ -4,8 +4,8 @@ pub use crate::{
 };
 
 macro_rules! impl_try_from_for {
-    ( $( impl TryFrom<$from:ty> for $to:ty $(as $modus:ident)? );* $(;)? ) => {
-        $( impl_try_from_for!(@impl TryFrom<$from> for $to $(as $modus)? ); )*
+    ( $( impl TryFrom<$from:ty> for $to:ty $(as $mode:ident)? );* $(;)? ) => {
+        $( impl_try_from_for!(@impl TryFrom<$from> for $to $(as $mode)? ); )*
     };
     ( @impl TryFrom<$from:ty> for $to:ty as std ) => {
         // Case to be used when converting between unaligned integers
@@ -35,10 +35,7 @@ macro_rules! impl_try_from_for {
 
             #[inline]
             fn try_from(value: $from) -> ::core::result::Result<Self, Self::Error> {
-                if value >= (1 << (<Self>::BITS - 1)) {
-                    return ::core::result::Result::Err($crate::TryFromIntError(()));
-                }
-                if value < (-(1 << (<Self>::BITS - 1))) {
+                if !<$from as $crate::IsWithinBoundsOf<$to>>::is_within_bounds(value) {
                     return ::core::result::Result::Err($crate::TryFromIntError(()));
                 }
                 let mut dst = [0x00_u8; ::core::mem::size_of::<Self>()];

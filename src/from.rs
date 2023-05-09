@@ -412,7 +412,7 @@ impl_for!(
     impl From<U88> for U112;
     impl From<U96> for U112;
     impl From<U104> for U112;
-    
+
     impl From<u8> for I112;
     impl From<i8> for I112;
     impl From<u16> for I112;
