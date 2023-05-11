@@ -104,18 +104,6 @@ macro_rules! nonstandard_uint {
                 }
             }
 
-            impl ::core::convert::TryFrom<$name> for $lower {
-                type Error = $crate::TryFromIntError;
-
-                #[inline]
-                fn try_from(value: $name) -> ::core::result::Result<Self, Self::Error> {
-                    let value = <Self as ::core::convert::TryFrom<$upper>>::try_from(
-                        <$upper as ::core::convert::From<$name>>::from(value)
-                    )?;
-                    ::core::result::Result::Ok(value)
-                }
-            }
-
             $crate::utils::impl_std_traits!($name as $upper);
         )*
     };

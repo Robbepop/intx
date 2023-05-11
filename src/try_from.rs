@@ -75,6 +75,36 @@ macro_rules! impl_try_from_for {
     };
 }
 impl_try_from_for! {
+    impl TryFrom<I16> for u16 as std;
+    impl TryFrom<U24> for u16 as std;
+    impl TryFrom<I24> for u16 as std;
+    impl TryFrom<U32> for u16 as std;
+    impl TryFrom<I32> for u16 as std;
+    impl TryFrom<U40> for u16 as std;
+    impl TryFrom<I40> for u16 as std;
+    impl TryFrom<U48> for u16 as std;
+    impl TryFrom<I48> for u16 as std;
+    impl TryFrom<U56> for u16 as std;
+    impl TryFrom<I56> for u16 as std;
+    impl TryFrom<U64> for u16 as std;
+    impl TryFrom<I64> for u16 as std;
+    impl TryFrom<U72> for u16 as std;
+    impl TryFrom<I72> for u16 as std;
+    impl TryFrom<U80> for u16 as std;
+    impl TryFrom<I80> for u16 as std;
+    impl TryFrom<U88> for u16 as std;
+    impl TryFrom<I88> for u16 as std;
+    impl TryFrom<U96> for u16 as std;
+    impl TryFrom<I96> for u16 as std;
+    impl TryFrom<U104> for u16 as std;
+    impl TryFrom<I104> for u16 as std;
+    impl TryFrom<U112> for u16 as std;
+    impl TryFrom<I112> for u16 as std;
+    impl TryFrom<U120> for u16 as std;
+    impl TryFrom<I120> for u16 as std;
+    impl TryFrom<U128> for u16 as std;
+    impl TryFrom<I128> for u16 as std;
+
     impl TryFrom<i8> for U16 as std;
     impl TryFrom<i16> for U16 as std;
     impl TryFrom<I16> for U16 as std;
@@ -112,6 +142,36 @@ impl_try_from_for! {
     impl TryFrom<i128> for U16 as std;
     impl TryFrom<U128> for U16 as std;
     impl TryFrom<I128> for U16 as std;
+
+    impl TryFrom<U16> for i16 as std;
+    impl TryFrom<U24> for i16 as std;
+    impl TryFrom<I24> for i16 as std;
+    impl TryFrom<U32> for i16 as std;
+    impl TryFrom<I32> for i16 as std;
+    impl TryFrom<U40> for i16 as std;
+    impl TryFrom<I40> for i16 as std;
+    impl TryFrom<U48> for i16 as std;
+    impl TryFrom<I48> for i16 as std;
+    impl TryFrom<U56> for i16 as std;
+    impl TryFrom<I56> for i16 as std;
+    impl TryFrom<U64> for i16 as std;
+    impl TryFrom<I64> for i16 as std;
+    impl TryFrom<U72> for i16 as std;
+    impl TryFrom<I72> for i16 as std;
+    impl TryFrom<U80> for i16 as std;
+    impl TryFrom<I80> for i16 as std;
+    impl TryFrom<U88> for i16 as std;
+    impl TryFrom<I88> for i16 as std;
+    impl TryFrom<U96> for i16 as std;
+    impl TryFrom<I96> for i16 as std;
+    impl TryFrom<U104> for i16 as std;
+    impl TryFrom<I104> for i16 as std;
+    impl TryFrom<U112> for i16 as std;
+    impl TryFrom<I112> for i16 as std;
+    impl TryFrom<U120> for i16 as std;
+    impl TryFrom<I120> for i16 as std;
+    impl TryFrom<U128> for i16 as std;
+    impl TryFrom<I128> for i16 as std;
 
     impl TryFrom<u16> for I16 as std;
     impl TryFrom<U16> for I16 as std;
@@ -170,6 +230,34 @@ impl_try_from_for! {
     impl TryFrom<i128> for I24 as primitive;
     impl TryFrom<I128> for I24 as base;
 
+    impl TryFrom<I16> for u32 as std;
+    impl TryFrom<I24> for u32 as std;
+    impl TryFrom<I32> for u32 as std;
+    impl TryFrom<U40> for u32 as std;
+    impl TryFrom<I40> for u32 as std;
+    impl TryFrom<U48> for u32 as std;
+    impl TryFrom<I48> for u32 as std;
+    impl TryFrom<U56> for u32 as std;
+    impl TryFrom<I56> for u32 as std;
+    impl TryFrom<U64> for u32 as std;
+    impl TryFrom<I64> for u32 as std;
+    impl TryFrom<U72> for u32 as std;
+    impl TryFrom<I72> for u32 as std;
+    impl TryFrom<U80> for u32 as std;
+    impl TryFrom<I80> for u32 as std;
+    impl TryFrom<U88> for u32 as std;
+    impl TryFrom<I88> for u32 as std;
+    impl TryFrom<U96> for u32 as std;
+    impl TryFrom<I96> for u32 as std;
+    impl TryFrom<U104> for u32 as std;
+    impl TryFrom<I104> for u32 as std;
+    impl TryFrom<U112> for u32 as std;
+    impl TryFrom<I112> for u32 as std;
+    impl TryFrom<U120> for u32 as std;
+    impl TryFrom<I120> for u32 as std;
+    impl TryFrom<U128> for u32 as std;
+    impl TryFrom<I128> for u32 as std;
+
     impl TryFrom<i8> for U32 as std;
     impl TryFrom<i16> for U32 as std;
     impl TryFrom<I16> for U32 as std;
@@ -204,6 +292,32 @@ impl_try_from_for! {
     impl TryFrom<i128> for U32 as std;
     impl TryFrom<U128> for U32 as std;
     impl TryFrom<I128> for U32 as std;
+
+    impl TryFrom<U32> for i32 as std;
+    impl TryFrom<U40> for i32 as std;
+    impl TryFrom<I40> for i32 as std;
+    impl TryFrom<U48> for i32 as std;
+    impl TryFrom<I48> for i32 as std;
+    impl TryFrom<U56> for i32 as std;
+    impl TryFrom<I56> for i32 as std;
+    impl TryFrom<U64> for i32 as std;
+    impl TryFrom<I64> for i32 as std;
+    impl TryFrom<U72> for i32 as std;
+    impl TryFrom<I72> for i32 as std;
+    impl TryFrom<U80> for i32 as std;
+    impl TryFrom<I80> for i32 as std;
+    impl TryFrom<U88> for i32 as std;
+    impl TryFrom<I88> for i32 as std;
+    impl TryFrom<U96> for i32 as std;
+    impl TryFrom<I96> for i32 as std;
+    impl TryFrom<U104> for i32 as std;
+    impl TryFrom<I104> for i32 as std;
+    impl TryFrom<U112> for i32 as std;
+    impl TryFrom<I112> for i32 as std;
+    impl TryFrom<U120> for i32 as std;
+    impl TryFrom<I120> for i32 as std;
+    impl TryFrom<U128> for i32 as std;
+    impl TryFrom<I128> for i32 as std;
 
     impl TryFrom<u32> for I32 as std;
     impl TryFrom<U32> for I32 as std;
@@ -280,6 +394,30 @@ impl_try_from_for! {
     impl TryFrom<i128> for I56 as primitive;
     impl TryFrom<I128> for I56 as base;
 
+    impl TryFrom<I16> for u64 as std;
+    impl TryFrom<I24> for u64 as std;
+    impl TryFrom<I32> for u64 as std;
+    impl TryFrom<I40> for u64 as std;
+    impl TryFrom<I48> for u64 as std;
+    impl TryFrom<I56> for u64 as std;
+    impl TryFrom<I64> for u64 as std;
+    impl TryFrom<U72> for u64 as std;
+    impl TryFrom<I72> for u64 as std;
+    impl TryFrom<U80> for u64 as std;
+    impl TryFrom<I80> for u64 as std;
+    impl TryFrom<U88> for u64 as std;
+    impl TryFrom<I88> for u64 as std;
+    impl TryFrom<U96> for u64 as std;
+    impl TryFrom<I96> for u64 as std;
+    impl TryFrom<U104> for u64 as std;
+    impl TryFrom<I104> for u64 as std;
+    impl TryFrom<U112> for u64 as std;
+    impl TryFrom<I112> for u64 as std;
+    impl TryFrom<U120> for u64 as std;
+    impl TryFrom<I120> for u64 as std;
+    impl TryFrom<U128> for u64 as std;
+    impl TryFrom<I128> for u64 as std;
+
     impl TryFrom<i8> for U64 as std;
     impl TryFrom<i16> for U64 as std;
     impl TryFrom<I16> for U64 as std;
@@ -309,6 +447,24 @@ impl_try_from_for! {
     impl TryFrom<i128> for U64 as std;
     impl TryFrom<U128> for U64 as std;
     impl TryFrom<I128> for U64 as std;
+
+    impl TryFrom<U64> for i64 as std;
+    impl TryFrom<U72> for i64 as std;
+    impl TryFrom<I72> for i64 as std;
+    impl TryFrom<U80> for i64 as std;
+    impl TryFrom<I80> for i64 as std;
+    impl TryFrom<U88> for i64 as std;
+    impl TryFrom<I88> for i64 as std;
+    impl TryFrom<U96> for i64 as std;
+    impl TryFrom<I96> for i64 as std;
+    impl TryFrom<U104> for i64 as std;
+    impl TryFrom<I104> for i64 as std;
+    impl TryFrom<U112> for i64 as std;
+    impl TryFrom<I112> for i64 as std;
+    impl TryFrom<U120> for i64 as std;
+    impl TryFrom<I120> for i64 as std;
+    impl TryFrom<U128> for i64 as std;
+    impl TryFrom<I128> for i64 as std;
 
     impl TryFrom<u64> for I64 as std;
     impl TryFrom<U64> for I64 as std;
@@ -387,6 +543,22 @@ impl_try_from_for! {
     impl TryFrom<U120> for I120 as eq_width;
     impl TryFrom<I128> for I120 as base;
 
+    impl TryFrom<I16> for u128 as std;
+    impl TryFrom<I24> for u128 as std;
+    impl TryFrom<I32> for u128 as std;
+    impl TryFrom<I40> for u128 as std;
+    impl TryFrom<I48> for u128 as std;
+    impl TryFrom<I56> for u128 as std;
+    impl TryFrom<I64> for u128 as std;
+    impl TryFrom<I72> for u128 as std;
+    impl TryFrom<I80> for u128 as std;
+    impl TryFrom<I88> for u128 as std;
+    impl TryFrom<I96> for u128 as std;
+    impl TryFrom<I104> for u128 as std;
+    impl TryFrom<I112> for u128 as std;
+    impl TryFrom<I120> for u128 as std;
+    impl TryFrom<I128> for u128 as std;
+
     impl TryFrom<i8> for U128 as std;
     impl TryFrom<i16> for U128 as std;
     impl TryFrom<I16> for U128 as std;
@@ -407,6 +579,8 @@ impl_try_from_for! {
     impl TryFrom<I120> for U128 as std;
     impl TryFrom<i128> for U128 as std;
     impl TryFrom<I128> for U128 as std;
+
+    impl TryFrom<U128> for i128 as std;
 
     impl TryFrom<u128> for I128 as std;
     impl TryFrom<U128> for I128 as std;
