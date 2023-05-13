@@ -14,8 +14,8 @@ macro_rules! impl_for {
         impl ::core::convert::From<$from> for $to {
             #[inline]
             fn from(value: $from) -> Self {
-                <Self as ::core::convert::From<<Self as $crate::UnalignedInteger>::UpperPrimitive>>::from(
-                    <<Self as $crate::UnalignedInteger>::UpperPrimitive as ::core::convert::From<$from>>::from(value)
+                <Self as ::core::convert::From<<Self as $crate::UnalignedInteger>::Repr>>::from(
+                    <<Self as $crate::UnalignedInteger>::Repr as ::core::convert::From<$from>>::from(value)
                 )
             }
         }
@@ -24,8 +24,8 @@ macro_rules! impl_for {
         impl ::core::convert::From<$from> for $to {
             #[inline]
             fn from(value: $from) -> Self {
-                <Self as ::core::convert::From<<$from as $crate::UnalignedInteger>::UpperPrimitive>>::from(
-                    <<$from as $crate::UnalignedInteger>::UpperPrimitive as ::core::convert::From<$from>>::from(value)
+                <Self as ::core::convert::From<<$from as $crate::UnalignedInteger>::Repr>>::from(
+                    <<$from as $crate::UnalignedInteger>::Repr as ::core::convert::From<$from>>::from(value)
                 )
             }
         }

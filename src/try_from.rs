@@ -16,13 +16,13 @@ macro_rules! impl_try_from_for {
 
             #[inline]
             fn try_from(value: $from) -> ::core::result::Result<Self, Self::Error> {
-                let repr = <<$from as crate::UnalignedInteger>::UpperPrimitive
+                let repr = <<$from as crate::UnalignedInteger>::Repr
                     as ::core::convert::From<$from>>::from(value);
-                let lower = <<Self as crate::UnalignedInteger>::UpperPrimitive
+                let lower = <<Self as crate::UnalignedInteger>::Repr
                     as ::core::convert::TryFrom<<$from
-                    as crate::UnalignedInteger>::UpperPrimitive>>::try_from(repr)?;
+                    as crate::UnalignedInteger>::Repr>>::try_from(repr)?;
                 let result = <Self as ::core::convert::From<<Self
-                    as crate::UnalignedInteger>::UpperPrimitive>>::from(lower);
+                    as crate::UnalignedInteger>::Repr>>::from(lower);
                 ::core::result::Result::Ok(result)
             }
         }
@@ -67,8 +67,8 @@ macro_rules! impl_try_from_for {
 
             #[inline]
             fn try_from(value: $from) -> ::core::result::Result<Self, Self::Error> {
-                <Self as ::core::convert::TryFrom<<$from as $crate::UnalignedInteger>::UpperPrimitive>>::try_from(
-                    <<$from as $crate::UnalignedInteger>::UpperPrimitive as ::core::convert::From<$from>>::from(value)
+                <Self as ::core::convert::TryFrom<<$from as $crate::UnalignedInteger>::Repr>>::try_from(
+                    <<$from as $crate::UnalignedInteger>::Repr as ::core::convert::From<$from>>::from(value)
                 )
             }
         }

@@ -2,7 +2,7 @@ macro_rules! nonstandard_uint {
     (
         $(
             $( #[$docs:meta] )*
-            $vis:vis struct $name:ident(bytes = $num_bytes:literal, lower = $lower:ty, upper = $upper:ty)
+            $vis:vis struct $name:ident(bytes = $num_bytes:literal, repr = $upper:ty)
         );* $(;)?
     ) => {
         $(
@@ -73,8 +73,7 @@ macro_rules! nonstandard_uint {
             }
 
             impl $crate::UnalignedInteger for $name {
-                type LowerPrimitive = $lower;
-                type UpperPrimitive = $upper;
+                type Repr = $upper;
 
                 #[inline]
                 fn sign_ext_byte(self) -> ::core::primitive::u8 {
@@ -95,35 +94,35 @@ macro_rules! nonstandard_uint {
 }
 nonstandard_uint! {
     /// 24-bit unsigned integer with alignment of 1.
-    pub struct U24(bytes = 3, lower = ::core::primitive::u16, upper = ::core::primitive::u32);
+    pub struct U24(bytes = 3, repr = ::core::primitive::u32);
 
     /// 40-bit unsigned integer with alignment of 1.
-    pub struct U40(bytes = 5, lower = ::core::primitive::u32, upper = ::core::primitive::u64);
+    pub struct U40(bytes = 5, repr = ::core::primitive::u64);
 
     /// 48-bit unsigned integer with alignment of 1.
-    pub struct U48(bytes = 6, lower = ::core::primitive::u32, upper = ::core::primitive::u64);
+    pub struct U48(bytes = 6, repr = ::core::primitive::u64);
 
     /// 56-bit unsigned integer with alignment of 1.
-    pub struct U56(bytes = 7, lower = ::core::primitive::u32, upper = ::core::primitive::u64);
+    pub struct U56(bytes = 7, repr = ::core::primitive::u64);
 
     /// 72-bit unsigned integer with alignment of 1.
-    pub struct U72(bytes = 9, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U72(bytes = 9, repr = ::core::primitive::u128);
 
     /// 80-bit unsigned integer with alignment of 1.
-    pub struct U80(bytes = 10, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U80(bytes = 10, repr = ::core::primitive::u128);
 
     /// 88-bit unsigned integer with alignment of 1.
-    pub struct U88(bytes = 11, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U88(bytes = 11, repr = ::core::primitive::u128);
 
     /// 96-bit unsigned integer with alignment of 1.
-    pub struct U96(bytes = 12, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U96(bytes = 12, repr = ::core::primitive::u128);
 
     /// 104-bit unsigned integer with alignment of 1.
-    pub struct U104(bytes = 13, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U104(bytes = 13, repr = ::core::primitive::u128);
 
     /// 112-bit unsigned integer with alignment of 1.
-    pub struct U112(bytes = 14, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U112(bytes = 14, repr = ::core::primitive::u128);
 
     /// 120-bit unsigned integer with alignment of 1.
-    pub struct U120(bytes = 15, lower = ::core::primitive::u64, upper = ::core::primitive::u128);
+    pub struct U120(bytes = 15, repr = ::core::primitive::u128);
 }

@@ -73,18 +73,12 @@ impl_bounded_integer_for!(i8, u8, i16, u16, i32, u32, i64, u64, i128, u128);
 
 /// Trait implemented by unaligned integers provided by this crate.
 trait UnalignedInteger: Sized {
-    /// The largest integer primitive type that is smaller than `Self`.
-    ///
-    /// # Example
-    ///
-    /// For `U24` this is `u16`.
-    type LowerPrimitive: BoundedInteger + Into<Self> + TryFrom<Self>;
     /// The smallest integer primitive type that is larger than `Self`.
     ///
     /// # Example
     ///
     /// For `U24` this is `u32`.
-    type UpperPrimitive: BoundedInteger + TryInto<Self> + From<Self>;
+    type Repr: BoundedInteger + TryInto<Self> + From<Self>;
 
     /// Returns the sign extension byte for the unaligned integer value.
     ///
@@ -99,8 +93,7 @@ macro_rules! impl_unaligned_uint_for {
     ( $( $ty:ty ),* ) => {
         $(
             impl $crate::UnalignedInteger for $ty {
-                type LowerPrimitive = Self;
-                type UpperPrimitive = Self;
+                type Repr = Self;
 
                 #[inline]
                 fn sign_ext_byte(self) -> u8 {
@@ -116,8 +109,7 @@ macro_rules! impl_unaligned_int_for {
     ( $( $ty:ty ),* ) => {
         $(
             impl $crate::UnalignedInteger for $ty {
-                type LowerPrimitive = Self;
-                type UpperPrimitive = Self;
+                type Repr = Self;
 
                 #[inline]
                 fn sign_ext_byte(self) -> u8 {

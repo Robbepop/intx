@@ -12,8 +12,7 @@ macro_rules! unaligned_int {
         );
 
         impl $crate::UnalignedInteger for $name {
-            type LowerPrimitive = $repr;
-            type UpperPrimitive = $repr;
+            type Repr = $repr;
 
             fn sign_ext_byte(self) -> ::core::primitive::u8 {
                 $crate::utils::sign_ext_byte(self.is_positive())
@@ -49,8 +48,7 @@ macro_rules! unaligned_int {
         );
 
         impl $crate::UnalignedInteger for $name {
-            type LowerPrimitive = $repr;
-            type UpperPrimitive = $repr;
+            type Repr = $repr;
 
             #[inline]
             fn sign_ext_byte(self) -> ::core::primitive::u8 {
