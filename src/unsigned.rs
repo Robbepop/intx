@@ -89,21 +89,6 @@ macro_rules! nonstandard_uint {
                 }
             }
 
-            impl ::core::convert::TryFrom<$upper> for $name {
-                type Error = $crate::TryFromIntError;
-
-                #[inline]
-                fn try_from(value: $upper) -> ::core::result::Result<Self, Self::Error> {
-                    if value >= (1 << Self::BITS) {
-                        return ::core::result::Result::Err($crate::TryFromIntError(()))
-                    }
-                    let mut dst = [0x00_u8; $num_bytes];
-                    let src = value.to_ne_bytes();
-                    $crate::utils::truncate_bytes(&mut dst, &src);
-                    ::core::result::Result::Ok(Self::from_ne_bytes(dst))
-                }
-            }
-
             $crate::utils::impl_std_traits!($name as $upper);
         )*
     };
