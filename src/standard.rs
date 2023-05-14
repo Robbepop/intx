@@ -36,20 +36,6 @@ macro_rules! unaligned_int {
                 pub const MAX: Self = Self::from_ne_bytes(<$repr>::MAX.to_ne_bytes());
             }
 
-            impl ::core::convert::From<$repr> for $name {
-                #[inline]
-                fn from(value: $repr) -> Self {
-                    Self::from_ne_bytes(value.to_ne_bytes())
-                }
-            }
-
-            impl ::core::convert::From<$name> for $repr {
-                #[inline]
-                fn from(value: $name) -> Self {
-                    <$repr>::from_ne_bytes(value.to_ne_bytes())
-                }
-            }
-
             $crate::utils::impl_commons!($name as $repr);
         )*
     };

@@ -30,6 +30,14 @@ macro_rules! impl_for {
             }
         }
     };
+    ( @impl From<$from:ty> for $to:ty as noop ) => {
+        impl ::core::convert::From<$from> for $to {
+            #[inline]
+            fn from(value: $from) -> Self {
+                <$to>::from_ne_bytes(<$from>::to_ne_bytes(value))
+            }
+        }
+    };
     ( @impl From<$from:ty> for $to:ty ) => {
         impl ::core::convert::From<$from> for $to {
             #[inline]
@@ -58,10 +66,16 @@ macro_rules! impl_for {
 //
 // `u32` < `i32` < `U32` < `I32`
 impl_for!(
+    impl From<U16> for u16 as noop;
+
+    impl From<I16> for i16 as noop;
+
     impl From<u8> for U16 as std;
+    impl From<u16> for U16 as noop;
 
     impl From<u8> for I16 as std;
     impl From<i8> for I16 as std;
+    impl From<i16> for I16 as noop;
 
     impl From<u8> for U24;
     impl From<u16> for U24;
@@ -76,11 +90,18 @@ impl_for!(
 
     impl From<U16> for u32 as primitive;
     impl From<U24> for u32;
+    impl From<U32> for u32 as noop;
+
+    impl From<U16> for i32 as primitive;
+    impl From<I16> for i32 as primitive;
+    impl From<I24> for i32;
+    impl From<I32> for i32 as noop;
 
     impl From<u8> for U32 as std;
     impl From<u16> for U32 as std;
     impl From<U16> for U32 as std;
     impl From<U24> for U32;
+    impl From<u32> for U32 as noop;
 
     impl From<u8> for I32 as std;
     impl From<i8> for I32 as std;
@@ -89,10 +110,7 @@ impl_for!(
     impl From<U16> for I32 as std;
     impl From<I16> for I32 as std;
     impl From<U24> for I32;
-
-    impl From<U16> for i32 as primitive;
-    impl From<I16> for i32 as primitive;
-    impl From<I24> for i32;
+    impl From<i32> for I32 as noop;
 
     impl From<u8> for U40;
     impl From<u16> for U40;
@@ -166,6 +184,7 @@ impl_for!(
     impl From<U40> for u64;
     impl From<U48> for u64;
     impl From<U56> for u64;
+    impl From<U64> for u64 as noop;
 
     impl From<u8> for U64 as std;
     impl From<u16> for U64 as std;
@@ -176,6 +195,7 @@ impl_for!(
     impl From<U40> for U64;
     impl From<U48> for U64;
     impl From<U56> for U64;
+    impl From<u64> for U64 as noop;
 
     impl From<U16> for i64 as primitive;
     impl From<I16> for i64 as primitive;
@@ -185,6 +205,7 @@ impl_for!(
     impl From<I40> for i64;
     impl From<I48> for i64;
     impl From<I56> for i64;
+    impl From<I64> for i64 as noop;
 
     impl From<u8> for I64 as std;
     impl From<i8> for I64 as std;
@@ -200,6 +221,7 @@ impl_for!(
     impl From<U40> for I64;
     impl From<U48> for I64;
     impl From<U56> for I64;
+    impl From<i64> for I64 as noop;
 
     impl From<u8> for U72;
     impl From<u16> for U72;
@@ -510,6 +532,7 @@ impl_for!(
     impl From<U104> for u128;
     impl From<U112> for u128;
     impl From<U120> for u128;
+    impl From<U128> for u128 as noop;
 
     impl From<u8> for U128 as std;
     impl From<u16> for U128 as std;
@@ -529,6 +552,7 @@ impl_for!(
     impl From<U104> for U128;
     impl From<U112> for U128;
     impl From<U120> for U128;
+    impl From<u128> for U128 as noop;
 
     impl From<u8> for I128 as std;
     impl From<i8> for I128 as std;
@@ -555,6 +579,7 @@ impl_for!(
     impl From<U104> for I128;
     impl From<U112> for I128;
     impl From<U120> for I128;
+    impl From<i128> for I128 as noop;
 
     impl From<U16> for i128 as primitive;
     impl From<I16> for i128 as primitive;
@@ -573,4 +598,5 @@ impl_for!(
     impl From<I104> for i128;
     impl From<I112> for i128;
     impl From<I120> for i128;
+    impl From<I128> for i128 as noop;
 );
