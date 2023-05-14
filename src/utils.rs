@@ -89,7 +89,9 @@ macro_rules! impl_commons {
         impl $ty {
             /// Returns the integer value as a byte array in native-endian order.
             #[inline]
-            pub const fn to_ne_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+            pub const fn to_ne_bytes(
+                self,
+            ) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
                 self.0
             }
 
@@ -107,19 +109,25 @@ macro_rules! impl_commons {
 
             /// Creates an unaligned signed integer from the given bytes in native-endian order.
             #[inline]
-            pub const fn from_ne_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+            pub const fn from_ne_bytes(
+                bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+            ) -> Self {
                 Self(bytes)
             }
 
             /// Creates an unaligned signed integer from the given bytes in little-endian order.
             #[inline]
-            pub fn from_le_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+            pub fn from_le_bytes(
+                bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+            ) -> Self {
                 Self::from_ne_bytes($crate::utils::le_bytes_to_ne(bytes))
             }
 
             /// Creates an unaligned signed integer from the given bytes in big-endian order.
             #[inline]
-            pub fn from_be_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+            pub fn from_be_bytes(
+                bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+            ) -> Self {
                 Self::from_ne_bytes($crate::utils::be_bytes_to_ne(bytes))
             }
         }
