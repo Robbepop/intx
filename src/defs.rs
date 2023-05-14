@@ -29,6 +29,7 @@ macro_rules! unaligned_int {
 
                 /// Returns the index position of the most significant byte.
                 #[inline]
+                #[allow(dead_code)] // Note: not used by power-of-two sized ints atm
                 pub(crate) const fn msb_pos() -> ::core::primitive::usize {
                     if ::core::cfg!(target_endian = "big") {
                         0_usize
@@ -103,6 +104,14 @@ macro_rules! unaligned_int {
     }
 }
 unaligned_int! {
+    /// 16-bit unsigned integer with alignment of 1.
+    @[repr(::core::primitive::u16, unsigned)]
+    pub struct U16([u8; 2]);
+
+    /// 16-bit signed integer with alignment of 1.
+    @[repr(::core::primitive::i16, signed)]
+    pub struct I16([u8; 2]);
+
     /// 24-bit unsigned integer with alignment of 1.
     @[repr(::core::primitive::u32, unsigned)]
     pub struct U24([u8; 3]);
@@ -110,6 +119,14 @@ unaligned_int! {
     /// 24-bit signed integer with alignment of 1.
     @[repr(::core::primitive::i32, signed)]
     pub struct I24([u8; 3]);
+
+    /// 32-bit unsigned integer with alignment of 1.
+    @[repr(::core::primitive::u32, unsigned)]
+    pub struct U32([u8; 4]);
+
+    /// 32-bit signed integer with alignment of 1.
+    @[repr(::core::primitive::i32, signed)]
+    pub struct I32([u8; 4]);
 
     /// 40-bit unsigned integer with alignment of 1.
     @[repr(::core::primitive::u64, unsigned)]
@@ -134,6 +151,14 @@ unaligned_int! {
     /// 56-bit signed integer with alignment of 1.
     @[repr(::core::primitive::i64, signed)]
     pub struct I56([u8; 7]);
+
+    /// 64-bit unsigned integer with alignment of 1.
+    @[repr(::core::primitive::u64, unsigned)]
+    pub struct U64([u8; 8]);
+
+    /// 64-bit signed integer with alignment of 1.
+    @[repr(::core::primitive::i64, signed)]
+    pub struct I64([u8; 8]);
 
     /// 72-bit unsigned integer with alignment of 1.
     @[repr(::core::primitive::u128, unsigned)]
@@ -190,4 +215,12 @@ unaligned_int! {
     /// 120-bit signed integer with alignment of 1.
     @[repr(::core::primitive::i128, signed)]
     pub struct I120([u8; 15]);
+
+    /// 128-bit unsigned integer with alignment of 1.
+    @[repr(::core::primitive::u128, unsigned)]
+    pub struct U128([u8; 16]);
+
+    /// 128-bit signed integer with alignment of 1.
+    @[repr(::core::primitive::i128, signed)]
+    pub struct I128([u8; 16]);
 }

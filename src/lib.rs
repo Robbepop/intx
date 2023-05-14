@@ -37,7 +37,6 @@
 mod defs;
 mod error;
 mod from;
-mod standard;
 mod try_from;
 mod utils;
 mod within_bounds;
@@ -46,11 +45,10 @@ mod within_bounds;
 mod tests;
 
 pub use self::defs::{
-    I104, I112, I120, I24, I40, I48, I56, I72, I80, I88, I96, U104, U112, U120, U24, U40, U48, U56,
-    U72, U80, U88, U96,
+    I104, I112, I120, I128, I16, I24, I32, I40, I48, I56, I64, I72, I80, I88, I96, U104, U112,
+    U120, U128, U16, U24, U32, U40, U48, U56, U64, U72, U80, U88, U96,
 };
 pub use self::error::TryFromIntError;
-pub use self::standard::{I128, I16, I32, I64, U128, U16, U32, U64};
 pub(crate) use self::within_bounds::IsWithinBoundsOf;
 
 /// Trait implemented by Rust integer primitives to communicate their bounds.
