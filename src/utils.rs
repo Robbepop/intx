@@ -82,9 +82,9 @@ pub fn ne_bytes_to_be<const N: usize>(array: [u8; N]) -> [u8; N] {
     }
 }
 
-/// Implements some Rust standard library traits for `$ty` as if it was a `$prim` type.
+/// Implements common APIs and Rust standard library traits for `$ty` as if it was a `$prim` type.
 // #[macro_export]
-macro_rules! impl_std_traits {
+macro_rules! impl_commons {
     ( $ty:ty as $prim:ty ) => {
         impl ::core::default::Default for $ty {
             #[inline]
@@ -230,4 +230,4 @@ macro_rules! impl_std_traits {
 }
 
 #[doc(inline)]
-pub(crate) use impl_std_traits;
+pub(crate) use impl_commons;

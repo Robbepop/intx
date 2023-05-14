@@ -96,7 +96,7 @@ macro_rules! nonstandard_int {
                 }
             }
 
-            $crate::utils::impl_std_traits!($name as $repr);
+            $crate::utils::impl_commons!($name as $repr);
         )*
     }
 }
