@@ -16,6 +16,15 @@ macro_rules! nonstandard_uint {
             )]
             $vis struct $name([::core::primitive::u8; $num_bytes]);
 
+            impl $crate::UnalignedInteger for $name {
+                type Repr = $repr;
+
+                #[inline]
+                fn sign_ext_byte(self) -> ::core::primitive::u8 {
+                    0x00_u8
+                }
+            }
+
             impl $name {
                 /// The amount of bits required by this integer type.
                 pub const BITS: ::core::primitive::u32 = $num_bytes * 8_u32;
@@ -70,15 +79,6 @@ macro_rules! nonstandard_uint {
                 #[inline]
                 pub fn from_be_bytes(bytes: [::core::primitive::u8; $num_bytes]) -> Self {
                     Self::from_ne_bytes($crate::utils::be_bytes_to_ne(bytes))
-                }
-            }
-
-            impl $crate::UnalignedInteger for $name {
-                type Repr = $repr;
-
-                #[inline]
-                fn sign_ext_byte(self) -> ::core::primitive::u8 {
-                    0x00_u8
                 }
             }
 
