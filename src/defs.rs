@@ -39,7 +39,192 @@ macro_rules! unaligned_int {
                 }
             }
 
-            $crate::utils::impl_commons!($name as $repr);
+            impl $name {
+                /// Returns the integer value as a byte array in native-endian order.
+                #[inline]
+                pub const fn to_ne_bytes(
+                    self,
+                ) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                    self.0
+                }
+
+                /// Returns the integer value as a byte array in little-endian order.
+                #[inline]
+                pub fn to_le_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                    $crate::utils::ne_bytes_to_le(self.to_ne_bytes())
+                }
+
+                /// Returns the integer value as a byte array in big-endian order.
+                #[inline]
+                pub fn to_be_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                    $crate::utils::ne_bytes_to_be(self.to_ne_bytes())
+                }
+
+                /// Creates an unaligned signed integer from the given bytes in native-endian order.
+                #[inline]
+                pub const fn from_ne_bytes(
+                    bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+                ) -> Self {
+                    Self(bytes)
+                }
+
+                /// Creates an unaligned signed integer from the given bytes in little-endian order.
+                #[inline]
+                pub fn from_le_bytes(
+                    bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+                ) -> Self {
+                    Self::from_ne_bytes($crate::utils::le_bytes_to_ne(bytes))
+                }
+
+                /// Creates an unaligned signed integer from the given bytes in big-endian order.
+                #[inline]
+                pub fn from_be_bytes(
+                    bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()],
+                ) -> Self {
+                    Self::from_ne_bytes($crate::utils::be_bytes_to_ne(bytes))
+                }
+            }
+
+            impl ::core::default::Default for $name {
+                #[inline]
+                fn default() -> Self {
+                    Self([0x00_u8; ::core::mem::size_of::<Self>()])
+                }
+            }
+
+            impl ::core::cmp::PartialOrd for $name {
+                #[inline]
+                fn partial_cmp(&self, other: &Self) -> ::core::option::Option<::core::cmp::Ordering> {
+                    <$repr as ::core::cmp::PartialOrd>::partial_cmp(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+
+                #[inline]
+                fn lt(&self, other: &Self) -> ::core::primitive::bool {
+                    <$repr as ::core::cmp::PartialOrd>::lt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+
+                #[inline]
+                fn le(&self, other: &Self) -> ::core::primitive::bool {
+                    <$repr as ::core::cmp::PartialOrd>::le(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+
+                #[inline]
+                fn gt(&self, other: &Self) -> ::core::primitive::bool {
+                    <$repr as ::core::cmp::PartialOrd>::gt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+
+                #[inline]
+                fn ge(&self, other: &Self) -> ::core::primitive::bool {
+                    <$repr as ::core::cmp::PartialOrd>::ge(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+            }
+
+            impl ::core::cmp::Ord for $name {
+                #[inline]
+                fn cmp(&self, other: &Self) -> ::core::cmp::Ordering {
+                    <$repr as ::core::cmp::Ord>::cmp(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        &<$repr as ::core::convert::From<Self>>::from(*other),
+                    )
+                }
+            }
+
+            impl ::core::hash::Hash for $name {
+                #[inline]
+                fn hash<H: ::core::hash::Hasher>(&self, state: &mut H) {
+                    <$repr as ::core::hash::Hash>::hash(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        state,
+                    )
+                }
+            }
+
+            impl ::core::fmt::Debug for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::Debug>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::Display for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::Display>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::Binary for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::Binary>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::Octal for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::Octal>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::LowerHex for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::LowerHex>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::UpperHex for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::UpperHex>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::LowerExp for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::LowerExp>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
+
+            impl ::core::fmt::UpperExp for $name {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    <$repr as ::core::fmt::UpperExp>::fmt(
+                        &<$repr as ::core::convert::From<Self>>::from(*self),
+                        f,
+                    )
+                }
+            }
         )*
     };
     (
