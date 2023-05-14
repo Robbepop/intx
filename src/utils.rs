@@ -86,6 +86,44 @@ pub fn ne_bytes_to_be<const N: usize>(array: [u8; N]) -> [u8; N] {
 // #[macro_export]
 macro_rules! impl_commons {
     ( $ty:ty as $prim:ty ) => {
+        impl $ty {
+            /// Returns the integer value as a byte array in native-endian order.
+            #[inline]
+            pub const fn to_ne_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                self.0
+            }
+
+            /// Returns the integer value as a byte array in little-endian order.
+            #[inline]
+            pub fn to_le_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                $crate::utils::ne_bytes_to_le(self.to_ne_bytes())
+            }
+
+            /// Returns the integer value as a byte array in big-endian order.
+            #[inline]
+            pub fn to_be_bytes(self) -> [::core::primitive::u8; ::core::mem::size_of::<Self>()] {
+                $crate::utils::ne_bytes_to_be(self.to_ne_bytes())
+            }
+
+            /// Creates an unaligned signed integer from the given bytes in native-endian order.
+            #[inline]
+            pub const fn from_ne_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+                Self(bytes)
+            }
+
+            /// Creates an unaligned signed integer from the given bytes in little-endian order.
+            #[inline]
+            pub fn from_le_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+                Self::from_ne_bytes($crate::utils::le_bytes_to_ne(bytes))
+            }
+
+            /// Creates an unaligned signed integer from the given bytes in big-endian order.
+            #[inline]
+            pub fn from_be_bytes(bytes: [::core::primitive::u8; ::core::mem::size_of::<Self>()]) -> Self {
+                Self::from_ne_bytes($crate::utils::be_bytes_to_ne(bytes))
+            }
+        }
+
         impl ::core::default::Default for $ty {
             #[inline]
             fn default() -> Self {

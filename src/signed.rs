@@ -58,42 +58,6 @@ macro_rules! nonstandard_int {
                 pub(crate) const fn is_positive(self) -> ::core::primitive::bool {
                     (self.0[Self::msb_pos()] & 0x80_u8) == 0x00_u8
                 }
-
-                /// Returns the integer value as a byte array in native-endian order.
-                #[inline]
-                pub const fn to_ne_bytes(self) -> [::core::primitive::u8; $num_bytes] {
-                    self.0
-                }
-
-                /// Returns the integer value as a byte array in little-endian order.
-                #[inline]
-                pub fn to_le_bytes(self) -> [::core::primitive::u8; $num_bytes] {
-                    $crate::utils::ne_bytes_to_le(self.to_ne_bytes())
-                }
-
-                /// Returns the integer value as a byte array in big-endian order.
-                #[inline]
-                pub fn to_be_bytes(self) -> [::core::primitive::u8; $num_bytes] {
-                    $crate::utils::ne_bytes_to_be(self.to_ne_bytes())
-                }
-
-                /// Creates an unaligned signed integer from the given bytes in native-endian order.
-                #[inline]
-                pub const fn from_ne_bytes(bytes: [::core::primitive::u8; $num_bytes]) -> Self {
-                    Self(bytes)
-                }
-
-                /// Creates an unaligned signed integer from the given bytes in little-endian order.
-                #[inline]
-                pub fn from_le_bytes(bytes: [::core::primitive::u8; $num_bytes]) -> Self {
-                    Self::from_ne_bytes($crate::utils::le_bytes_to_ne(bytes))
-                }
-
-                /// Creates an unaligned signed integer from the given bytes in big-endian order.
-                #[inline]
-                pub fn from_be_bytes(bytes: [::core::primitive::u8; $num_bytes]) -> Self {
-                    Self::from_ne_bytes($crate::utils::be_bytes_to_ne(bytes))
-                }
             }
 
             $crate::utils::impl_commons!($name as $repr);
