@@ -86,6 +86,13 @@ pub fn ne_bytes_to_be<const N: usize>(array: [u8; N]) -> [u8; N] {
 // #[macro_export]
 macro_rules! impl_std_traits {
     ( $ty:ty as $prim:ty ) => {
+        impl ::core::default::Default for $ty {
+            #[inline]
+            fn default() -> Self {
+                Self([0x00_u8; ::core::mem::size_of::<Self>()])
+            }
+        }
+
         impl ::core::cmp::PartialOrd for $ty {
             #[inline]
             fn partial_cmp(&self, other: &Self) -> ::core::option::Option<::core::cmp::Ordering> {

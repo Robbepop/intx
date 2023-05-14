@@ -82,13 +82,6 @@ macro_rules! nonstandard_uint {
                 }
             }
 
-            impl ::core::default::Default for $name {
-                #[inline]
-                fn default() -> Self {
-                    Self([0x00_u8; $num_bytes])
-                }
-            }
-
             $crate::utils::impl_std_traits!($name as $repr);
         )*
     };

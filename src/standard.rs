@@ -72,15 +72,6 @@ macro_rules! unaligned_int {
                 }
             }
 
-            impl ::core::default::Default for $name {
-                #[inline]
-                fn default() -> Self {
-                    <$name as ::core::convert::From<$repr>>::from(
-                        <$repr as ::core::default::Default>::default()
-                    )
-                }
-            }
-
             impl ::core::convert::From<$repr> for $name {
                 #[inline]
                 fn from(value: $repr) -> Self {
