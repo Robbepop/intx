@@ -213,6 +213,9 @@ impl_try_from_for! {
     impl TryFrom<U128> for I16 as std;
     impl TryFrom<I128> for I16 as std;
 
+    impl TryFrom<i8> for U24 as primitive;
+    impl TryFrom<i16> for U24 as primitive;
+    impl TryFrom<I16> for U24 as base;
     impl TryFrom<I24> for U24 as eq_width;
     impl TryFrom<u32> for U24 as primitive;
     impl TryFrom<i32> for U24 as primitive;
@@ -401,6 +404,12 @@ impl_try_from_for! {
     impl TryFrom<U128> for I32 as std;
     impl TryFrom<I128> for I32 as std;
 
+    impl TryFrom<i8> for U40 as primitive;
+    impl TryFrom<i16> for U40 as primitive;
+    impl TryFrom<I16> for U40 as base;
+    impl TryFrom<I24> for U40 as base;
+    impl TryFrom<i32> for U40 as primitive;
+    impl TryFrom<I32> for U40 as base;
     impl TryFrom<I40> for U40 as eq_width;
     impl TryFrom<U48> for U40 as base;
     impl TryFrom<I48> for U40 as base;
@@ -457,6 +466,13 @@ impl_try_from_for! {
     impl TryFrom<U128> for I40 as base;
     impl TryFrom<I128> for I40 as base;
 
+    impl TryFrom<i8> for U48 as primitive;
+    impl TryFrom<i16> for U48 as primitive;
+    impl TryFrom<I16> for U48 as base;
+    impl TryFrom<I24> for U48 as base;
+    impl TryFrom<i32> for U48 as primitive;
+    impl TryFrom<I32> for U48 as base;
+    impl TryFrom<I40> for U48 as base;
     impl TryFrom<I48> for U48 as eq_width;
     impl TryFrom<U56> for U48 as base;
     impl TryFrom<I56> for U48 as base;
@@ -509,6 +525,14 @@ impl_try_from_for! {
     impl TryFrom<U128> for I48 as base;
     impl TryFrom<I128> for I48 as base;
 
+    impl TryFrom<i8> for U56 as primitive;
+    impl TryFrom<i16> for U56 as primitive;
+    impl TryFrom<I16> for U56 as base;
+    impl TryFrom<I24> for U56 as base;
+    impl TryFrom<i32> for U56 as primitive;
+    impl TryFrom<I32> for U56 as base;
+    impl TryFrom<I40> for U56 as base;
+    impl TryFrom<I48> for U56 as base;
     impl TryFrom<I56> for U56 as eq_width;
     impl TryFrom<u64> for U56 as primitive;
     impl TryFrom<i64> for U56 as primitive;
@@ -650,6 +674,17 @@ impl_try_from_for! {
     impl TryFrom<U128> for I64 as std;
     impl TryFrom<I128> for I64 as std;
 
+    impl TryFrom<i8> for U72 as primitive;
+    impl TryFrom<i16> for U72 as primitive;
+    impl TryFrom<I16> for U72 as base;
+    impl TryFrom<I24> for U72 as base;
+    impl TryFrom<i32> for U72 as primitive;
+    impl TryFrom<I32> for U72 as base;
+    impl TryFrom<I40> for U72 as base;
+    impl TryFrom<I48> for U72 as base;
+    impl TryFrom<I56> for U72 as base;
+    impl TryFrom<i64> for U72 as primitive;
+    impl TryFrom<I64> for U72 as base;
     impl TryFrom<I72> for U72 as eq_width;
     impl TryFrom<U80> for U72 as base;
     impl TryFrom<I80> for U72 as base;
@@ -686,6 +721,18 @@ impl_try_from_for! {
     impl TryFrom<U128> for I72 as base;
     impl TryFrom<I128> for I72 as base;
 
+    impl TryFrom<i8> for U80 as primitive;
+    impl TryFrom<i16> for U80 as primitive;
+    impl TryFrom<I16> for U80 as base;
+    impl TryFrom<I24> for U80 as base;
+    impl TryFrom<i32> for U80 as primitive;
+    impl TryFrom<I32> for U80 as base;
+    impl TryFrom<I40> for U80 as base;
+    impl TryFrom<I48> for U80 as base;
+    impl TryFrom<I56> for U80 as base;
+    impl TryFrom<i64> for U80 as primitive;
+    impl TryFrom<I64> for U80 as base;
+    impl TryFrom<I72> for U80 as base;
     impl TryFrom<I80> for U80 as eq_width;
     impl TryFrom<U88> for U80 as base;
     impl TryFrom<I88> for U80 as base;
@@ -718,6 +765,19 @@ impl_try_from_for! {
     impl TryFrom<U128> for I80 as base;
     impl TryFrom<I128> for I80 as base;
 
+    impl TryFrom<i8> for U88 as primitive;
+    impl TryFrom<i16> for U88 as primitive;
+    impl TryFrom<I16> for U88 as base;
+    impl TryFrom<I24> for U88 as base;
+    impl TryFrom<i32> for U88 as primitive;
+    impl TryFrom<I32> for U88 as base;
+    impl TryFrom<I40> for U88 as base;
+    impl TryFrom<I48> for U88 as base;
+    impl TryFrom<I56> for U88 as base;
+    impl TryFrom<i64> for U88 as primitive;
+    impl TryFrom<I64> for U88 as base;
+    impl TryFrom<I72> for U88 as base;
+    impl TryFrom<I80> for U88 as base;
     impl TryFrom<I88> for U88 as eq_width;
     impl TryFrom<U96> for U88 as base;
     impl TryFrom<I96> for U88 as base;
@@ -746,8 +806,20 @@ impl_try_from_for! {
     impl TryFrom<U128> for I88 as base;
     impl TryFrom<I128> for I88 as base;
 
-    // TODO below
-
+    impl TryFrom<i8> for U96 as primitive;
+    impl TryFrom<i16> for U96 as primitive;
+    impl TryFrom<I16> for U96 as base;
+    impl TryFrom<I24> for U96 as base;
+    impl TryFrom<i32> for U96 as primitive;
+    impl TryFrom<I32> for U96 as base;
+    impl TryFrom<I40> for U96 as base;
+    impl TryFrom<I48> for U96 as base;
+    impl TryFrom<I56> for U96 as base;
+    impl TryFrom<i64> for U96 as primitive;
+    impl TryFrom<I64> for U96 as base;
+    impl TryFrom<I72> for U96 as base;
+    impl TryFrom<I80> for U96 as base;
+    impl TryFrom<I88> for U96 as base;
     impl TryFrom<I96> for U96 as eq_width;
     impl TryFrom<U104> for U96 as base;
     impl TryFrom<I104> for U96 as base;
@@ -772,6 +844,21 @@ impl_try_from_for! {
     impl TryFrom<U128> for I96 as base;
     impl TryFrom<I128> for I96 as base;
 
+    impl TryFrom<i8> for U104 as primitive;
+    impl TryFrom<i16> for U104 as primitive;
+    impl TryFrom<I16> for U104 as base;
+    impl TryFrom<I24> for U104 as base;
+    impl TryFrom<i32> for U104 as primitive;
+    impl TryFrom<I32> for U104 as base;
+    impl TryFrom<I40> for U104 as base;
+    impl TryFrom<I48> for U104 as base;
+    impl TryFrom<I56> for U104 as base;
+    impl TryFrom<i64> for U104 as primitive;
+    impl TryFrom<I64> for U104 as base;
+    impl TryFrom<I72> for U104 as base;
+    impl TryFrom<I80> for U104 as base;
+    impl TryFrom<I88> for U104 as base;
+    impl TryFrom<I96> for U104 as base;
     impl TryFrom<I104> for U104 as eq_width;
     impl TryFrom<U112> for U104 as base;
     impl TryFrom<I112> for U104 as base;
@@ -792,6 +879,22 @@ impl_try_from_for! {
     impl TryFrom<U128> for I104 as base;
     impl TryFrom<I128> for I104 as base;
 
+    impl TryFrom<i8> for U112 as primitive;
+    impl TryFrom<i16> for U112 as primitive;
+    impl TryFrom<I16> for U112 as base;
+    impl TryFrom<I24> for U112 as base;
+    impl TryFrom<i32> for U112 as primitive;
+    impl TryFrom<I32> for U112 as base;
+    impl TryFrom<I40> for U112 as base;
+    impl TryFrom<I48> for U112 as base;
+    impl TryFrom<I56> for U112 as base;
+    impl TryFrom<i64> for U112 as primitive;
+    impl TryFrom<I64> for U112 as base;
+    impl TryFrom<I72> for U112 as base;
+    impl TryFrom<I80> for U112 as base;
+    impl TryFrom<I88> for U112 as base;
+    impl TryFrom<I96> for U112 as base;
+    impl TryFrom<I104> for U112 as base;
     impl TryFrom<I112> for U112 as eq_width;
     impl TryFrom<U120> for U112 as base;
     impl TryFrom<I120> for U112 as base;
@@ -808,6 +911,23 @@ impl_try_from_for! {
     impl TryFrom<U128> for I112 as base;
     impl TryFrom<I128> for I112 as base;
 
+    impl TryFrom<i8> for U120 as primitive;
+    impl TryFrom<i16> for U120 as primitive;
+    impl TryFrom<I16> for U120 as base;
+    impl TryFrom<I24> for U120 as base;
+    impl TryFrom<i32> for U120 as primitive;
+    impl TryFrom<I32> for U120 as base;
+    impl TryFrom<I40> for U120 as base;
+    impl TryFrom<I48> for U120 as base;
+    impl TryFrom<I56> for U120 as base;
+    impl TryFrom<i64> for U120 as primitive;
+    impl TryFrom<I64> for U120 as base;
+    impl TryFrom<I72> for U120 as base;
+    impl TryFrom<I80> for U120 as base;
+    impl TryFrom<I88> for U120 as base;
+    impl TryFrom<I96> for U120 as base;
+    impl TryFrom<I104> for U120 as base;
+    impl TryFrom<I112> for U120 as base;
     impl TryFrom<I120> for U120 as eq_width;
     impl TryFrom<u128> for U120 as primitive;
     impl TryFrom<i128> for U120 as primitive;
