@@ -120,3 +120,14 @@ mod size_and_align_of {
         size_of(U128) == 16;
     );
 }
+
+#[test]
+fn try_from_works_for_u24() {
+    assert_eq!(<U24>::try_from(I24::default()), Ok(<U24>::default()));
+    assert_eq!(<I24>::try_from(U24::default()), Ok(<I24>::default()));
+    assert!(<U24>::try_from(I24::try_from(-1i32).unwrap()).is_err());
+    assert!(<U24>::try_from(I24::MIN).is_err());
+    assert!(<U24>::try_from(I24::MAX).is_ok());
+    assert_eq!(<I24>::try_from(U24::MIN), Ok(I24::default()));
+    assert!(<I24>::try_from(U24::MAX).is_err());
+}

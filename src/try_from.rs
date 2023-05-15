@@ -982,14 +982,3 @@ impl_try_from_for! {
     impl TryFrom<u128> for I128 as std;
     impl TryFrom<U128> for I128 as std;
 }
-
-#[test]
-fn test_conv() {
-    assert_eq!(<U24>::try_from(I24::default()), Ok(<U24>::default()));
-    assert_eq!(<I24>::try_from(U24::default()), Ok(<I24>::default()));
-    assert!(<U24>::try_from(I24::try_from(-1i32).unwrap()).is_err());
-    assert!(<U24>::try_from(I24::MIN).is_err());
-    assert!(<U24>::try_from(I24::MAX).is_ok());
-    assert_eq!(<I24>::try_from(U24::MIN), Ok(I24::default()));
-    assert!(<I24>::try_from(U24::MAX).is_err());
-}
