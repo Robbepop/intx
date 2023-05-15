@@ -45,9 +45,11 @@ Integer types provided by this crate only have very a minimal API surface.
 ## Usage
 
 The focus of this crate is data layout, alignment and space-optization.
-It was crafted when the `wasmi` interpreter required a more memory efficient representation
-of its internal bytecode. Using a `U24` instead of `u32` in certain places allows the Rust
-compiler to pack data structures more efficiently in some cases, especially when using `enum` types.
+It was crafted as an experiment when the [`wasmi` interpreter](https://github.com/paritytech/wasmi)
+required a more memory efficient representation of its internal bytecode.
+For example using a 3 bytes sized `U24` instead of a 4 byte sized `u32` in certain places allows the Rust
+compiler to pack data structures more efficiently in some cases,
+especially when using `enum` types.
 
 If your primary focus is on the logical side where you are mostly interested in
 arithmetic operations on integer types with non-standard but fixed bitwidths then
