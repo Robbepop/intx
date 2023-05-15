@@ -1,34 +1,83 @@
-//! This crate provides unaligned integer typed of standard and non-standard bitwidths.
+//! This crate provides new integer types with non-standard and fixed bitwidths
+//! such as `U24`, `I48`, `U96` and so forth with a focus on data layout and alignment.
 //!
-//! These types mainly allow for conversion from and to Rust primitive integer types
-//! and do not support arithmetic operations on themselves directly. Instead convert
-//! to the next best Rust primitive type in order to perform arithmetic operations.
+//! - All integers provided by this crate require the minimum number of bytes for their representation.
+//!   For example, `U24` requires 3 bytes, `I48` requires 6 bytes.
+//! - The alignment of all integer types provided by this crate is always 1. If another
+//!   alignment is required it is recommended to wrap the integer type in a newtype and
+//!   enforce an alignment via `#[align(N)]`.
+//! - As of now the provided integers do not have a rich set of arithmetic methods defined on them.
+//!   It is instead expected to convert them to Rust primitive integers, apply the computation and
+//!   eventually convert the result back. This might be supported in the future if requested.
+//! - The binary representation of integer types provided by this crate is in twos-complement just
+//!   like Rust's built-in integer types.
 //!
-//! The main advantage of these types is that their alignment is always 1 which allows
-//! to have more control over data layout in Rust `enum` and `struct` types that are
-//! making use of these types.
-//! Note that generally unaligned values will probably slow down fetching and storing
-//! of values so do not use these types without profiling for your specific use case.
+//! ## Data Layout
 //!
-//! # Example
+//! All integer types provided by this crate internally consists of a single byte array.
+//! For example, the structure of `U24` is `struct U24([u8; 3]);` allowing for optimal memory
+//! usage and an alignment of 1 (if needed).
 //!
+//! ## API
+//!
+//! Integer types provided by this crate only have very a minimal API surface.
+//!
+//! - Traits implemented by all of the integer types are the following:
+//!
+//!   - `Clone`, `Copy`, `Default`, `Eq`, `PartialEq`, `Ord`, `PartialOrd`, `Hash`
+//!     - Common traits are all implemented as efficiently as possible for every integer type.
+//!   - `Debug`, `Display`, `Binary`, `Octal`, `LowerHex`, `UpperHex`, `LowerExp`, `UpperExp`
+//!     - Integer types mimick the display representation of the next larger Rust built-in integer type.
+//!
+//! - Endian-aware conversion routines are also implemented:
+//!
+//!   - `from_ne_bytes`, `to_ne_bytes`: Convert from and to native-endian bytes. (always efficient)
+//!   - `from_le_bytes`, `to_le_bytes`: Convert from and to little-endian bytes.
+//!   - `from_be_bytes`, `to_be_bytes`: Convert from and to big-endian bytes.
+//!
+//! - Rich `From` and `TryFrom` implementations:
+//!
+//!   - All provided integer types have a very rich set of `From` and `TryFrom` trait implementations
+//!     to efficiently convert between different integer types and Rust built-in integers.
+//!
+//!
+//! # Example: Packed
+//!
+//! Here the Rust compiler wastes 3 bytes for the discriminent of the `enum`.
+//! ```
+//! pub enum Unpacked {
+//!     A(u32), // We only use the lowest 24-bit of the integer.
+//!     B(i16),
+//! }
+//! assert_eq!(core::mem::size_of::<Unpacked>(), 8);
+//! ```
+//!
+//! Using `intx::U24` the Rust compiler can properly pack the `enum` type wasting no bytes.
+//! ```
+//! pub enum Packed {
+//!     A(intx::U24), // Now using a type that reflects our usage intent properly.
+//!     B(i16),
+//! }
+//! assert_eq!(core::mem::size_of::<Packed>(), 4);
+//! ```
+//!
+//! # Example: Alignment
+//!
+//! With standard alignment the `enum` discriminent takes up a whopping 8 bytes.
 //! ```
 //! pub enum Aligned {
 //!     A(u64),
 //!     B(i64),
 //! }
-//!
 //! assert_eq!(core::mem::size_of::<Aligned>(), 16);
 //! ```
 //!
+//! Using `intx` integers with their alignment of 1 allows to pack the `enum` discrimant to a single byte.
 //! ```
-//! # use unaligned_int::{U16, I16, U32, I32, U64, I64};
 //! pub enum Unaligned {
-//!     A(U64),
-//!     B(I64),
+//!     A(intx::U64),
+//!     B(intx::I64),
 //! }
-//!
-//! // Note that the size of `Op` is 4 bytes since `U24` has an alignemnt of 1.
 //! assert_eq!(core::mem::size_of::<Unaligned>(), 9);
 //! ```
 

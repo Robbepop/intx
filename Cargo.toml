@@ -1,9 +1,15 @@
 [package]
-name = "unaligned-int"
+name = "intx"
+authors = ["Robin Freyler <robin.freyler@gmail.com>"]
 version = "0.1.0"
 edition = "2021"
-documentation = "https://docs.rs/unaligned-int/"
-description = "Unaligned integers with non-power-of-two bit widths."
+documentation = "https://docs.rs/intx/"
+description = "Defines new integer types with non-standard but fixed sizes."
+license = "Apache-2.0/MIT"
+readme = "README.md"
+repository = "https://github.com/Robbepop/intx"
+keywords = ["integer", "unaligned", "misaligned", "non-standard", "unsigned"]
+categories = ["embedded", "no-std", "data-structures"]
 
 [dependencies]
 # none
