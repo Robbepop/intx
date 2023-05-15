@@ -8,6 +8,7 @@ pub use crate::{
 /// or `U48`.
 pub(crate) trait IsWithinBoundsOf<T> {
     /// Returns `true` if the value of `self` is within bounds for type `T`.
+    #[allow(clippy::wrong_self_convention)] // Note: we only implement this for Rust built-in integer types.
     fn is_within_bounds(self) -> bool;
 }
 
