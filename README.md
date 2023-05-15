@@ -1,3 +1,14 @@
+| Continuous Integration |  Documentation   |      Crates.io       |
+|:----------------------:|:----------------:|:--------------------:|
+| [![ci][1]][2]          | [![docs][3]][4] | [![crates][5]][6]  |
+
+[1]: https://github.com/Robbepop/intx/actions/workflows/rust.yml/badge.svg
+[2]: https://github.com/Robbepop/intx/actions/workflows/rust.yml
+[3]: https://docs.rs/intx/badge.svg
+[4]: https://docs.rs/intx
+[5]: https://img.shields.io/crates/v/intx.svg
+[6]: https://crates.io/crates/intx
+
 # `intx` - Non-standard fixed bitwidth integers for Rust
 
 > WARNING: This crate is not yet production ready as it is missing lots of tests.
