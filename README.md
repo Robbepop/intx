@@ -1,5 +1,7 @@
 # `intx` - Non-standard fixed bitwidth integers for Rust
 
+> WARNING: This crate is not yet production ready as it is missing lots of tests.
+
 This crate provides new integer types with non-standard and fixed bitwidths
 such as `U24`, `I48`, `U96` and so forth with a focus on data layout and alignment.
 
